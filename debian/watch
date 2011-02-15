@@ -1,0 +1,5 @@
+version=3
+
+opts=dversionmangle=s/\+dfsg// \
+http://launchpad.net/cuneiform-linux \
+http://launchpad.net/cuneiform-linux/[0-9.]+/.*/[+]download/cuneiform-linux-([0-9.]+)[.]tar[.]bz2

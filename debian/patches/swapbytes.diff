@@ -1,0 +1,34 @@
+Description: Use a more portable function to swap byte order.
+Author: Jakub Wilk <jwilk@debian.org>
+Forwarded: yes
+Last-Update: 2011-01-21
+
+--- a/cuneiform_src/Kern/rstr/src/perc.c
++++ b/cuneiform_src/Kern/rstr/src/perc.c
+@@ -108,6 +108,7 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <assert.h>
++#include <endian.h>
+ 
+ #include "struct.h"
+ #include "func.h"
+@@ -778,17 +779,7 @@
+  * Since it was only used on Windows (not Mac) I'm assuming it means
+  * "swap 32 bytes between big endian and current byte order".
+  */
+-#if defined(WIN32) && defined(_MSC_VER) && (_MSC_VER > 800)
+-  #define   swapbytes(a) __asm {                      \
+-                                 __asm   mov   EAX,a  \
+-                                 __asm   bswap EAX    \
+-                                 __asm   mov   a,EAX  \
+-                               }
+-#elif defined(__GNUC__) /* FIXME: also check that we are on x86. And little-endian. */
+-    #define swapbytes(a) asm ("bswap %0;" :"=r"(a) :"0"(a));
+-#else
+-  #error You must define swapbytes for your platform
+-#endif
++#define swapbytes(a) do { (a) = htobe32(a); } while (0)
+ 
+ Bool makeRasterC( c_comp* comp, RecRaster** rast )
+ {

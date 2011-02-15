@@ -1,0 +1,16 @@
+Description: Use ‘slv’ as language code for Slovenian.
+Bug: https://bugs.launchpad.net/cuneiform-linux/+bug/707951
+Origin: upstream, http://bazaar.launchpad.net/~jpakkane/cuneiform-linux/trunk/revision/527
+Last-Update: 2011-01-26
+
+--- a/cuneiform_src/cli/cuneiform-cli.cpp
++++ b/cuneiform_src/cli/cuneiform-cli.cpp
+@@ -102,7 +102,7 @@
+         {LANG_ROMAN,     "rum"},
+         {LANG_HUNGAR,    "hun"},
+         {LANG_BULGAR,    "bul"},
+-        {LANG_SLOVENIAN, "slo"},
++        {LANG_SLOVENIAN, "slv"},
+         {LANG_LATVIAN,   "lav"},
+         {LANG_LITHUANIAN,"lit"},
+         {LANG_ESTONIAN,  "est"},

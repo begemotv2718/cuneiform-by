@@ -1,0 +1,53 @@
+#!/usr/bin/make -f
+
+here = $(dir $(firstword $(MAKEFILE_LIST)))/..
+upstream_version = $(shell cd $(here) && dpkg-parsechangelog | sed -n -r -e '/^Version: ([0-9.]+)([+]dfsg).*/ { s//\1/; p; q; }')
+
+test_truth = $(wildcard images/*.*.txt)
+test_image = $(test_truth:.txt=)
+test_out = $(test_truth:.txt=.out)
+
+CFLAGS := $(shell dpkg-buildflags --get CFLAGS)
+CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS)
+LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
+
+# These don't need to be exported and if they are we'll get the flags
+# duplicated in the command line.
+unexport CFLAGS
+unexport CXXFLAGS
+unexport LDFLAGS
+
+.PHONY: override_dh_auto_configure
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DCMAKE_BUILD_TYPE=relwithdebinfo \
+		-DCMAKE_INSTALL_RPATH=/usr/lib/cuneiform \
+		-DCMAKE_VERBOSE_MAKEFILE=ON \
+		-DCMAKE_C_FLAGS_RELWITHDEBINFO="$(CFLAGS)" \
+		-DCMAKE_CXX_FLAGS_RELWITHDEBINFO="$(CXXFLAGS)" \
+		-DCMAKE_EXE_LINKER_FLAGS="$(LDFLAGS)"
+
+.PHONY: dh_makeshlibs
+override_dh_makeshlibs:
+
+ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
+
+.PHONY: override_dh_auto_test
+override_dh_auto_test: $(test_out)
+
+%.out: % %.txt
+	CF_DATADIR=$(CURDIR)/datafiles/ obj-*/cuneiform $(<) -o $(@)
+	if ! diff -u $(@) $(lastword $(^)); then rm -f $(@); exit 1; fi
+
+endif
+
+.PHONY:
+get-orig-source:
+	sh $(here)/debian/get-orig-source.sh $(upstream_version)
+
+.PHONY: build build-arch build-indep binary binary-arch binary-indep clean
+build-arch build-indep: build
+build binary binary-arch binary-indep clean:
+	dh $(@) --parallel
+
+# vim:ts=4 sw=4 noet

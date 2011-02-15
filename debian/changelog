@@ -1,0 +1,132 @@
+cuneiform (1.0.0+dfsg-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * Explicitly build-depend on pkg-config. Thanks to Stefano Rivera for the
+    bug report.
+  * Add Vcs-* fields.
+  * Use the standard C assert() macro, rather than custom Cuneiform one.
+    [c-assert.diff]
+  * Pass CFLAGS, CXXFLAGS and LDFLAGS (get from dpkg-buildflags) to cmake
+    (closes: #608345). Thanks to Sami Liedes for the bug report.
+    + Build depend on dpkg-dev (>= 1.15.7).
+  * Pass --parallel to dh.
+    + Bump debhelper minimum version to 7.4.10.
+  * Update debian/copyright to the latest DEP-5 version.
+  * Bump year in debian/copyright.
+  * Explicitly link to GraphicsMagick (rather than via the ImageMagick
+    compatibility layer).
+  * Don't ship /usr/lib/cuneiform/*.so symlinks. These libraries are
+    considered private, at least until #598616 is fixed.
+  * Rename some private variables in debian/rules to make them lowercase.
+  * Update patch headers.
+  * Provide proper ‘build-arch’ and ‘build-indep’ targets in debian/rules.
+  * Document input format in the manual page (closes: #572061). Thanks to
+    Janusz S. Bień for the bug report.
+  * Use ‘slv’ (rather than ‘slo’) as language code for Slovenian.
+    [slovenian-slv.diff]
+  * Fix package description: Slovenian is supported, Slovak is not.
+  * Improve documentation of the language (-l) option (closes: #602512).
+    Thanks to Jari Aalto for the bug report.
+  * Install reasons file for vrms.
+
+ -- Jakub Wilk <jwilk@debian.org>  Wed, 26 Jan 2011 21:53:07 +0100
+
+cuneiform (1.0.0+dfsg-1) experimental; urgency=low
+
+  * New upstream release (closes: #575419).
+  * New maintainer (closes: #543893).
+  * Document in README.source how to repackage upstream tarball.
+  * Update debian/copyright.
+    + Document that the package is auto-buildable.
+    + Document which files were stripped from the upstream tarball.
+    + Convert to the DEP-5 format.
+  * Drop README.Debian, no longer needed.
+  * Rewrite debian/rules from scratch using dh.
+    + Bump debhelper minimum version to 7.4.4 (for cmake support).
+    + Turn on MAKE_VERBOSE_MAKEFILE.
+    + Disable call to dh_makeshlibs to avoid creation of spurious
+      calls to ldconfig in postrm/postinst.
+    + Add get-orig-source target.
+  * Remove unused overrides.
+  * Link to GraphicsMagick rather than ImageMagick:
+    + Build-depend on graphicsmagick-libmagick-dev-compat.
+    + Add patch to properly initialize the library. [graphicsmagick.diff]    
+  * Bump standards version to 3.9.1 (no changes needed).
+  * Force upgrade of ocrodjvu to at least 0.4.2; earlier versions of ocrodjvu
+    don't support this version of Cuneiform.
+  * List all the supported languages in the package description.
+  * Update the manual page.
+    + Document --dotmatrix, --fax and --singlecolumn options.
+    + Document all output formats.
+    + Don't use hyphen as minus sign.
+    + Fix a few formatting issues.
+  * Drop Vcs-* fields.
+  * Add watch file.
+  * Add patch from Dmitrijs Ledkovs to link the lao library with libm.
+    [libm.diff]
+  * Add patch for a for a more portable function to swap byte order.
+    [swapbytes.diff]
+  * Set Architecture to any; there's no good reason to limit it.
+  * Run rudimentary tests at build time.
+
+ -- Jakub Wilk <jwilk@debian.org>  Tue, 14 Sep 2010 15:53:54 +0200
+
+cuneiform (0.7.0+dfsg.1-1) unstable; urgency=low
+
+  * QA upload
+  * Repacked upstream tarball without cuneiform_src/Kern/rout/wtypes.h
+    since its licence has been doubted, and since it isn't used anyway.
+    (closes: #583603). Removed mention of that file from debian/copyright.
+  * Recompiled against libmagick++3 (closes: #575420).
+  * Bumped dependency on debhelper to >= 7.0.50~.
+  * Source format 3.0 (quilt): no change
+
+ -- Ralf Treinen <treinen@debian.org>  Tue, 29 Jun 2010 20:12:53 +0200
+
+cuneiform (0.7.0+dfsg-5) unstable; urgency=low
+
+  * Updating package to standards version 3.8.3.
+  * Removing vcs fields.
+  * Orphaning package.
+
+ -- Daniel Baumann <daniel@debian.org>  Thu, 27 Aug 2009 10:42:31 +0200
+
+cuneiform (0.7.0+dfsg-4) unstable; urgency=low
+
+  * Minimalizing rules file.
+
+ -- Daniel Baumann <daniel@debian.org>  Wed, 29 Jul 2009 21:44:01 +0200
+
+cuneiform (0.7.0+dfsg-3) unstable; urgency=low
+
+  * Avoiding circular depends (Closes: #531707).
+  * Updating standards version to 3.8.2.
+  * Adding README.Debian with a note about non-free.
+
+ -- Daniel Baumann <daniel@debian.org>  Fri, 10 Jul 2009 17:58:10 +0200
+
+cuneiform (0.7.0+dfsg-2) unstable; urgency=low
+
+  * Adding Autobuild field in control (Closes: #531363).
+  * Updating version and date in manpage.
+  * Building binaries with optimization.
+
+ -- Daniel Baumann <daniel@debian.org>  Mon, 01 Jun 2009 09:18:01 +0200
+
+cuneiform (0.7.0+dfsg-1) unstable; urgency=low
+
+  * Using correct rfc-2822 date formats in changelog.
+  * Updating to standards 3.8.1.
+  * Merging upstream version 0.7.0+dfsg.
+  * Passing libdir to cmake (Closes: #531277).
+
+ -- Daniel Baumann <daniel@debian.org>  Sun, 31 May 2009 19:54:52 +0200
+
+cuneiform (0.6.0+dfsg-1) unstable; urgency=low
+
+  * Initial release (Closes: #496264).
+  * Rebuild upstream tarball without win32 binaries.
+  * The source for the .dat files is unknown, therefore uploading to non-free,
+    see comments in http://bugs.debian.org/496264 from Jussi Pakkanen.
+
+ -- Daniel Baumann <daniel@debian.org>  Mon, 06 Apr 2009 02:38:00 +0200

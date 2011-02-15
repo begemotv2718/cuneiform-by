@@ -1,0 +1,26 @@
+Description: Use the standard C assert() macro, rather than custom Cuneiform
+  one.
+Author: Jakub Wilk <jwilk@debian.org>
+Forwarded: no
+Last-Update: 2010-10-06
+
+--- a/cuneiform_src/Kern/hh/internal.h
++++ b/cuneiform_src/Kern/hh/internal.h
+@@ -130,16 +130,7 @@
+    #define CONSOLE_is_stdConsole
+    #define CONSOLE_IF( statm )   if(statm) stdConsole
+ 
+-   #if defined(assert)
+-   #undef assert
+-   #endif
+-   #ifdef NDEBUG
+-      #define assert(p) ((void)0)
+-   #else
+-      #define assert(p) \
+-         ((p)) ? (void)0 : (void)stdAssert( #p, __FILE__, __LINE__)
+-   #endif
+-   #define assert_is_stdAssert
++   #include <assert.h>
+ 
+    #define ifret( cond ) \
+       {  if (!(cond)) { stdSetError( ER_INTERNAL, #cond, __FILE__, __LINE__); return; } }

@@ -1,0 +1,38 @@
+Source: cuneiform
+Section: non-free/graphics
+Priority: optional
+Maintainer: Jakub Wilk <jwilk@debian.org>
+Build-Depends: debhelper (>= 7.4.10~), dpkg-dev (>= 1.15.7~), cmake (>= 2.6.2),
+  libgraphicsmagick++1-dev, pkg-config
+Standards-Version: 3.9.1
+Homepage: http://launchpad.net/cuneiform-linux/
+Vcs-Hg: http://hg.debian.org/hg/collab-maint/cuneiform
+Vcs-Browser: http://hg.debian.org/hg/collab-maint/cuneiform
+XS-Autobuild: yes
+
+Package: cuneiform
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, cuneiform-common
+Breaks: ocrodjvu (<< 0.4.2)
+Description: multi-language OCR system
+ Cuneiform is an OCR system. In addition to text recognition it also does
+ layout analysis and text format recognition.
+ . 
+ The following languages are supported: Bulgarian, Croatian, Czech, Danish,
+ Dutch, English, Estonian, French, German, Hungarian, Italian, Latvian,
+ Lithuanian, Polish, Portuguese, Romanian, Russian, Serbian, Slovenian,
+ Spanish, Swedish, Turkish and Ukrainian.
+
+Package: cuneiform-common
+Architecture: all
+Depends: ${misc:Depends}
+Description: multi-language OCR system (common)
+ Cuneiform is an OCR system. In addition to text recognition it also does layout
+ analysis and text format recognition.
+ . 
+ The following languages are supported: Bulgarian, Croatian, Czech, Danish,
+ Dutch, English, Estonian, French, German, Hungarian, Italian, Latvian,
+ Lithuanian, Polish, Portuguese, Romanian, Russian, Serbian, Slovenian,
+ Spanish, Swedish, Turkish and Ukrainian.
+ .
+ This package contains the common files.
