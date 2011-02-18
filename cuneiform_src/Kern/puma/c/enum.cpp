@@ -216,6 +216,7 @@ static long enumLanguage[] = {
     LANG_LITHUANIAN,	// 25
     LANG_ESTONIAN  ,	// 26
     LANG_TURKISH   ,	// 27
+    LANG_BELARUSIAN,    // 28
     -1
 };
 

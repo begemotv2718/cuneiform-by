@@ -70,6 +70,7 @@ BEGIN
     IDS_TOEDNATIVE          "Внутренний формат. (*.fed)|*.fed|"
     IDS_TOASCII             "Неформатированный текст.(*.txt)|*.txt|"
     IDS_TOSMARTASCII        "Форматированный текст.(*.txt)|*.txt|"
+    IDS_LANG_BELARUSIAN     "Украинский"
 END
 
 STRINGTABLE DISCARDABLE 

@@ -75,7 +75,7 @@ static Bool32 CyrilLanguage(void)
 		 language == LANG_RUSSIAN   || language == LANG_ENGLISH ||
          language == LANG_UKRAINIAN || language == LANG_SERBIAN ||
          language == LANG_BULGAR    ||
-         language == LANG_RUSENG
+         language == LANG_RUSENG || language == LANG_BELARUSIAN
 		)
 	{
          langCyrilRoman = 1;

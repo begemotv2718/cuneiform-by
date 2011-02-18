@@ -813,6 +813,8 @@ RSTR_FUNC(Bool32) RSTR_EndPage( Handle myPage )
 	lang=LANG_UKRAINIAN;
 	if( language==LANG_RUSSIAN && langBul) // 01.09.2000 E.P.
 	lang=LANG_BULGAR;
+        if(language == LANG_RUSSIAN && langBy)
+          lang = LANG_BELARUSIAN;
 
 	if( p2_active==0 )
 	{
@@ -2005,7 +2007,7 @@ RSTR_FUNC(Bool32) RSTR_SetOptions (RSTR_Options *opt)
 	line_rerecog=FALSE;
 	line_readyBL=FALSE;
 	line_tabcell=0;
-	langSer=langUkr=langBul=0; // langBul 01.09.2000 E.P.
+	langBy=langSer=langUkr=langBul=0; // langBul 01.09.2000 E.P.
 
 	if( mmx )
 	set_MMX_addr();
@@ -2035,6 +2037,11 @@ RSTR_FUNC(Bool32) RSTR_SetOptions (RSTR_Options *opt)
 		language = LANG_RUSSIAN;
 		langBul =TRUE;
 	}
+        if( language==LANG_BELARUSIAN)
+        {
+                language = LANG_RUSSIAN;
+                langBy = TRUE;
+        }
 
 	if( old_language!=opt->language )
 	{

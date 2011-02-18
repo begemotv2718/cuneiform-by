@@ -73,7 +73,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "compat_defs.h"
 
-extern uchar langUkr , langSer;
+extern uchar langUkr , langSer, langBy;
 //#define  PROTOCOL
 
 #define  STRRCHR  strrchr

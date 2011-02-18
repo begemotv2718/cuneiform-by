@@ -86,6 +86,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   #undef LANG_LITHUANIAN
   #undef LANG_ESTONIAN
   #undef LANG_TURKISH
+  #undef LANG_BELARUSIAN
 #endif
 
 enum Languages {
@@ -117,7 +118,8 @@ enum Languages {
     LANG_LITHUANIAN = 25,
     LANG_ESTONIAN   = 26,
     LANG_TURKISH    = 27,
-    LANG_TOTAL      = 28,
+    LANG_BELARUSIAN = 28,
+    LANG_TOTAL      = 29,
     LG_LAT          =  1,
     LG_CYR          =  2,
 };

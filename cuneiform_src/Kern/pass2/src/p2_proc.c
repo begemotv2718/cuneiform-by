@@ -753,7 +753,7 @@ static Bool32 IsLeoStandardLetter(uchar let, uchar lang) {
 			"QWERTYUIOPASDFGHJKLZXCVBNM0123456789qwertyuiopasdfghjklzxcvbnm#%+";
 
 	if (lang == LANG_RUSSIAN) {
-		if (!p2globals.langBul && !p2globals.langSer && !p2globals.langUkr)
+		if (!p2globals.langBul && !p2globals.langSer && !p2globals.langUkr && !p2globals.langBy)
 			return TRUE;
 
 		if (strchr(alpha_str, stdAsciiToAnsi(let)))

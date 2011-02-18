@@ -630,7 +630,7 @@ if( !compose_cell(n,clist,c) )
  c->keg=(uchar)bl->ps;
  c->nvers=0;
  // AL-JOE decicion-making was here; all c1-c4 were deleted
- if( (r&MBI) && !(language==LANG_RUSSIAN&&!langUkr&&!langSer))
+ if( (r&MBI) && !(language==LANG_RUSSIAN&&!langUkr&&!langSer&&!langBy))
   {
   c->vers[c->nvers].let='i';
   c->vers[c->nvers].prob=128;

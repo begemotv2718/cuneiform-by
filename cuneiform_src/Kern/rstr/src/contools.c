@@ -67,6 +67,7 @@ static Bool apostr_ll           (cell *);
 static void inc_or_dec_slash    (cell *wc, int16_t numv);
 extern uchar langUkr;
 extern uchar langSer;
+extern uchar langBy;
 
 int16_t check_numb_2_9 (uchar c)
 //
@@ -421,6 +422,14 @@ int16_t check_numb_2_9 (uchar c)
     case UKR_II : return TRUE;
     }
  }
+
+ if( language==LANG_RUSSIAN && langBy ){
+  switch(c)
+    {
+    case UKR_I  : return TRUE;
+    case U_bel : return TRUE;
+    }
+ }
         return FALSE;
  }
 
@@ -763,6 +772,13 @@ if( language==LANG_RUSSIAN && langUkr ){
     case UKR_g  : return TRUE;
     case UKR_i  : return TRUE;
     case UKR_ii : return TRUE;
+    }
+ }
+if( language==LANG_RUSSIAN && langBy ){
+  switch(c)
+    {
+    case UKR_i  : return TRUE;
+    case u_bel  : return TRUE;
     }
  }
 

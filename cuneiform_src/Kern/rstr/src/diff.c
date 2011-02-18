@@ -613,7 +613,7 @@ int16_t ij_test(cell *c)
 		return 0;
 */
 
-   if( language == LANG_RUSSIAN && langUkr )
+   if( language == LANG_RUSSIAN && (langUkr || langBy) )
      if( c->w >= c->h - 2 )
        goto ret0;
 
@@ -831,7 +831,7 @@ cell *dot_ij(cell *c)
  int16_t e,d,H;
  uchar let = 0;
 
-   if( language == LANG_RUSSIAN && langUkr )
+   if( language == LANG_RUSSIAN && (langUkr || langBy) )
      return  dot_iUkr(c);
 
  csv=NULL;

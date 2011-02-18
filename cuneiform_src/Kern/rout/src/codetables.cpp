@@ -202,7 +202,8 @@ static puchar iso_table[LANG_TOTAL]={
   iso_baltic,	// LANG_LATVIAN	   24
   iso_baltic,	// LANG_LITHUANIAN 25
   iso_baltic,	// LANG_ESTONIAN   26
-  iso_turkish	// LANG_TURKISH	   27
+  iso_turkish,	// LANG_TURKISH	   27
+  iso_cyr      // LANG_BELARUSIAN 28
 };
 
 /**********************************/
@@ -360,7 +361,8 @@ static puchar ansi_table[LANG_TOTAL]={
   ansi_baltic,	// LANG_LATVIAN	   24
   ansi_baltic,	// LANG_LITHUANIAN 25
   ansi_baltic,	// LANG_ESTONIAN   26
-  ansi_turkish	// LANG_TURKISH	   27
+  ansi_turkish,	// LANG_TURKISH	   27
+  ansi_cyr      // LANG_BELARUSIAN 28
 };
 
 /**********************************/
@@ -498,7 +500,8 @@ static puchar ascii_table[LANG_TOTAL]={
   ascii_baltic,  // LANG_LATVIAN	24
   ascii_baltic,  // LANG_LITHUANIAN 25
   ascii_baltic,  // LANG_ESTONIAN   26
-  ascii_turkish	 // LANG_TURKISH	27
+  ascii_turkish,	 // LANG_TURKISH	27
+  ascii_cyr      // LANG_BELARUSIAN
 };
 
 // KOI8-R
@@ -551,7 +554,8 @@ static puchar koi8r_table[LANG_TOTAL]={
   ansi_baltic,   // LANG_LATVIAN	24
   ansi_baltic,   // LANG_LITHUANIAN 25
   ansi_baltic,   // LANG_ESTONIAN   26
-  ansi_turkish   // LANG_TURKISH	27
+  ansi_turkish,  // LANG_TURKISH	27
+  koi8r_cyr      // LANG_BELARUSIAN 28   
 };
 
 /**************************************/
@@ -648,7 +652,8 @@ static puchar mac_table[LANG_TOTAL]={
   mac_baltic,  // LANG_LATVIAN	  24
   mac_baltic,  // LANG_LITHUANIAN 25
   mac_baltic,  // LANG_ESTONIAN   26
-  mac_turkish  // LANG_TURKISH	  27
+  mac_turkish, // LANG_TURKISH	  27
+  mac_euro     // LANG_BELARUSIAN
 };
 
 static uchar **code_table[] = {
@@ -836,7 +841,8 @@ static long cp_ascii[LANG_TOTAL]={
 	775,	// LANG_LATVIAN	   24
 	775,	// LANG_LITHUANIAN 25
 	775,	// LANG_ESTONIAN   26
-	875		// LANG_TURKISH	   27
+	875,        // LANG_TURKISH	   27
+        866     // LANG_BELARUSIAN 28
 };
 
 static long cp_ansi[LANG_TOTAL]={
@@ -867,7 +873,8 @@ static long cp_ansi[LANG_TOTAL]={
 	1257,	// LANG_LATVIAN	   24
 	1257,	// LANG_LITHUANIAN 25
 	1257,	// LANG_ESTONIAN   26
-	1254	// LANG_TURKISH	   27
+	1254,	// LANG_TURKISH	   27
+        1251    // LANG_BELARUSIAN 28
 };
 
 	if(gActiveCode == ROUT_CODE_ASCII)

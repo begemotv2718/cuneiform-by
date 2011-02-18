@@ -712,7 +712,7 @@ static Bool32 SpecificPalka(uchar Code) {
 	case LANG_ENGLISH:
 		return FALSE;
 	case LANG_RUSSIAN:
-		if (p2globals.langUkr && (Code == 0xAF || Code == 0xBF || Code == 0xB2
+		if ((p2globals.langUkr || p2globals.langBy) && (Code == 0xAF || Code == 0xBF || Code == 0xB2
 				|| Code == 0xB3))
 			return TRUE;
 		return FALSE;

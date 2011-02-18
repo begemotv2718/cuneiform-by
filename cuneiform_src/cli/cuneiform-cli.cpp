@@ -94,6 +94,7 @@ static const langlist langs[] = {
         {LANG_DANISH,    "dan"},
         {LANG_PORTUGUESE,"por"},
         {LANG_DUTCH,     "dut"},
+        {LANG_BELARUSIAN, "by"},
 //        {LANG_DIG,       "dig"}, // This probably means "recognize digits only".
 //        {LANG_UZBEK,     "uzb"}, // These don't seem to have data files. Thus they are disabled.
 //        {LANG_KAZ,       "kaz"},
@@ -107,6 +108,7 @@ static const langlist langs[] = {
         {LANG_LITHUANIAN,"lit"},
         {LANG_ESTONIAN,  "est"},
         {LANG_TURKISH,   "tur"},
+        {LANG_BELARUSIAN, "bel"},
         {-1, NULL}
 };
 

@@ -897,6 +897,7 @@ STDMETHODIMP CRecognition::GetLanguageString(long code, BSTR * lpstr)
 		CASE_LANG( LANG_LITHUANIAN  );
 		CASE_LANG( LANG_ESTONIAN	 );
 		CASE_LANG( LANG_TURKISH	 );
+                CASE_LANG( LANG_BELARUSIAN );
 
 #undef LANG_CASE
 		default:

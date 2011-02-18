@@ -232,6 +232,9 @@ if( language==LANG_RUSSIAN && langSer )
     attrlin.language            =LANG_SERBIAN;
 if( language==LANG_RUSSIAN && langBul )
     attrlin.language            =LANG_BULGAR;
+if( language==LANG_RUSSIAN && langBy )
+    attrlin.language            =LANG_BELARUSIAN;
+
 strcpy((char*)attrlin.VersionName,"EmptyLine");
 //attrlin.Flags|=CSTR_STR_EMPTY;
 CSTR_SetLineAttr(lino, &attrlin);
@@ -725,7 +728,7 @@ ready_BL:;
 
 // распознать 'Й'. Русская буква с шапкой распознаётся уникальным алгоритмом,
 //		а не через accent(), как русская буква 'Ё'
-        if( language == LANG_RUSSIAN && !langUkr && !langSer ) //&& !langBul) Almi&Oleg
+        if( language == LANG_RUSSIAN && !langUkr && !langSer && !langBy ) //&& !langBul) Almi&Oleg
             proc_ii();//paste '©'
 
 
@@ -891,7 +894,7 @@ got_line:
 // распознавание Ы. Это, действительно уникальная буква, состоящая из двух компонент, стоящих рядом.
 //			Аналога в латинице нет.
 // распознавание особых украинских букв, а также сербских, болгарских и других, производимых из алфавита кириллицы
-            if( language == LANG_RUSSIAN && !langUkr && !langSer && !langBul)
+            if( language == LANG_RUSSIAN && !langUkr && !langSer && !langBul && !langBy)
                     proc_bI(0);                        //paste cutted '|'
             if( language == LANG_RUSSIAN && langUkr )
                     proc_Ukr();                        //UKRAINIAN "iI & .."
@@ -1441,8 +1444,10 @@ if( lang==LANG_RUSSIAN )
         lang=LANG_SERBIAN;
     if( langUkr )
         lang=LANG_UKRAINIAN;
-	if( langBul )
+    if( langBul )
         lang=LANG_BULGAR;
+    if(langBy)
+      lang=LANG_BELARUSIAN;
     }
 for(c=cell_f()->next;c!=cell_l();c=c->next)
   c->language = lang;
@@ -2664,6 +2669,8 @@ if( language==LANG_RUSSIAN && langSer )
     attrlin.language            =LANG_SERBIAN;
 if( language==LANG_RUSSIAN && langBul )
     attrlin.language            =LANG_BULGAR;
+if( language==LANG_RUSSIAN && langBy )
+    attrlin.language            =LANG_BELARUSIAN;
 strcpy((char*)attrlin.VersionName,"RecogVersions");
 CSTR_SetLineAttr(lino, &attrlin);
 if( lin )
