@@ -255,6 +255,10 @@ Bool16 rec_set_alpha(uchar language, uchar *alphabet) {
 		alphabet[r_cu_a] = 1;
 		alphabet['I'] = 1;
 		alphabet['i'] = 1;
+		alphabet[(uchar) 'ù'] = 0;
+		alphabet[(uchar) 'Ù'] = 0;
+		alphabet[(uchar) 'è'] = 0;
+		alphabet[(uchar) 'È'] = 0;
 		alphabet[UKR_I] = 1;
 		alphabet[UKR_i] = 1;
 		alphabet[UKR_II] = 0;

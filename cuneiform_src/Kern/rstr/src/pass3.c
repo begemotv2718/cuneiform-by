@@ -59,6 +59,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //                      Third pass                                  //
 //                                                                  //
 //////////////////////////////////////////////////////////////////////
+#include <stdio.h>
 #include <stdlib.h>
  #include <sys/stat.h>
 /* #include <io.h> */
@@ -224,6 +225,7 @@ attrlin.l_hei=0;
 attrlin.incline             =nIncline;
 attrlin.language                =language;
 attrlin.erection                =erection_inc;
+fprintf(stderr, "Setting attrlin language: language=%d attrlin.language=%d\n",language,attrlin.language);
 if( language==LANG_RUSSIAN && multy_language )
     attrlin.language            =LANG_RUSENG;
 if( language==LANG_RUSSIAN && langUkr )
@@ -234,6 +236,7 @@ if( language==LANG_RUSSIAN && langBul )
     attrlin.language            =LANG_BULGAR;
 if( language==LANG_RUSSIAN && langBy )
     attrlin.language            =LANG_BELARUSIAN;
+fprintf(stderr, "End Setting attrlin language: language=%d attrlin.language=%d\n",language,attrlin.language);
 
 strcpy((char*)attrlin.VersionName,"EmptyLine");
 //attrlin.Flags|=CSTR_STR_EMPTY;
@@ -271,6 +274,8 @@ void save_rest_bases(int16_t mode, int16_t line_crit);
 void save_rest_incline(int16_t mode);
 
 void proc_Ukr( void ); // see module UKR.C
+
+void proc_shortu(void); //belarus.c
 
 void cuts_glues(void);
 
@@ -894,10 +899,13 @@ got_line:
 // распознавание Ы. Это, действительно уникальная буква, состоящая из двух компонент, стоящих рядом.
 //			Аналога в латинице нет.
 // распознавание особых украинских букв, а также сербских, болгарских и других, производимых из алфавита кириллицы
-            if( language == LANG_RUSSIAN && !langUkr && !langSer && !langBul && !langBy)
+            fprintf(stderr,"language=%d langUkr=%d langBy=%d before lang specific calls",language,langUkr,langBy);
+            if( language == LANG_RUSSIAN && !langUkr && !langSer && !langBul)
                     proc_bI(0);                        //paste cutted '|'
-            if( language == LANG_RUSSIAN && langUkr )
+            if( language == LANG_RUSSIAN && langUkr ) {
+                    fprintf(stderr,"language=%d langUkr=%d langBy=%d calling proc_Ukr\n",language,langUkr,langBy);
                     proc_Ukr();                        //UKRAINIAN "iI & .."
+            }
             if( language == LANG_RUSSIAN && !langSer ) //&& !langBul)Almi&Oleg
                     proc_ii();                         //paste '©'
 
@@ -907,6 +915,11 @@ got_line:
 
             if(language == LANG_RUSSIAN && !langUkr && !langSer && !langBul)
                     proc_bI(1);                       //glue all 'л'
+            }
+            if( language == LANG_RUSSIAN && langBy ) {
+                    fprintf(stderr,"language=%d langUkr=%d langBy=%d calling proc_Ukr\n",language,langUkr,langBy);
+                    proc_shortu();
+                    proc_Ukr();                        //UKRAINIAN "iI & .."
             }
 
 // распознавание особых символов TM
@@ -2661,6 +2674,7 @@ attrlin.Psf=Psf;
 attrlin.incline             =nIncline;
 attrlin.language                =language;
 attrlin.erection                =erection_inc;
+fprintf(stderr, "Setting attrlin language: language=%d attrlin.language=%d\n",language,attrlin.language);
 if( language==LANG_RUSSIAN && multy_language )
     attrlin.language            =LANG_RUSENG;
 if( language==LANG_RUSSIAN && langUkr )
@@ -2671,6 +2685,7 @@ if( language==LANG_RUSSIAN && langBul )
     attrlin.language            =LANG_BULGAR;
 if( language==LANG_RUSSIAN && langBy )
     attrlin.language            =LANG_BELARUSIAN;
+fprintf(stderr, "Setting attrlin language: language=%d attrlin.language=%d\n",language,attrlin.language);
 strcpy((char*)attrlin.VersionName,"RecogVersions");
 CSTR_SetLineAttr(lino, &attrlin);
 if( lin )
@@ -3458,7 +3473,7 @@ return 0;
 int16_t p2_GetPs_up(void)
 {
 cell *  c;
-char    lets_up[]="WERTYUOPQASDFGHJKLZXCVBNM‰“Љ…Ќѓ‡•љ”›‚ЂЏђЋ‹†ќџ—‘Њ€’њЃћ012234567890";
+char    lets_up[]="WERTYUOPQASDFGHJKLZXCVBNM‰“Љ…Ќѓ?‡•љ”›‚ЂЏђЋ‹†ќџ—‘Њ€’њЃћ012234567890";
 //				  "WERTYUOPQASDFGHJKLZXCVBNMЙУКЕНГШЗХЪФЫВАПРОЛЖЭЯЧСМИТЬБЮ012234567890";
 
 int32_t    s2,s1,n,h,s12,na,nl;

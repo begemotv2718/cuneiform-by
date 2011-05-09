@@ -930,7 +930,7 @@ if( !langUkr && !langSer && !langBul )	// 31.08.2000 E.P.
      strcpy(decode_ASCII_to_[UKR_I ] , "\xB2");
      strcpy(decode_ASCII_to_[UKR_i ] , "\xB3");
      strcpy(decode_ASCII_to_[u_bel],"\xA2");
-     strcpy(decode_ASCII_to_[u_bel],"\xA3");
+     strcpy(decode_ASCII_to_[U_bel],"\xA1");
 
 
      let_linpos[UKR_I] = 0x11;   // base lines for diskrim

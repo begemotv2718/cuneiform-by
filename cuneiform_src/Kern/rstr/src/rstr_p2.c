@@ -928,7 +928,7 @@ void make_all_glues(void);
   {
    if( !langUkr )
     proc_bI(0);//paste cutted '|'
-   else if( langUkr )
+   if( langUkr || langBy )
     proc_Ukr();//UKRAINIAN "iI & .."
 
     proc_ii();//paste '©'
