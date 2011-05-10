@@ -225,7 +225,6 @@ attrlin.l_hei=0;
 attrlin.incline             =nIncline;
 attrlin.language                =language;
 attrlin.erection                =erection_inc;
-fprintf(stderr, "Setting attrlin language: language=%d attrlin.language=%d\n",language,attrlin.language);
 if( language==LANG_RUSSIAN && multy_language )
     attrlin.language            =LANG_RUSENG;
 if( language==LANG_RUSSIAN && langUkr )
@@ -236,7 +235,6 @@ if( language==LANG_RUSSIAN && langBul )
     attrlin.language            =LANG_BULGAR;
 if( language==LANG_RUSSIAN && langBy )
     attrlin.language            =LANG_BELARUSIAN;
-fprintf(stderr, "End Setting attrlin language: language=%d attrlin.language=%d\n",language,attrlin.language);
 
 strcpy((char*)attrlin.VersionName,"EmptyLine");
 //attrlin.Flags|=CSTR_STR_EMPTY;
@@ -899,11 +897,9 @@ got_line:
 // распознавание џ. Ёто, действительно уникальна€ буква, состо€ща€ из двух компонент, сто€щих р€дом.
 //			јналога в латинице нет.
 // распознавание особых украинских букв, а также сербских, болгарских и других, производимых из алфавита кириллицы
-            fprintf(stderr,"language=%d langUkr=%d langBy=%d before lang specific calls",language,langUkr,langBy);
             if( language == LANG_RUSSIAN && !langUkr && !langSer && !langBul)
                     proc_bI(0);                        //paste cutted '|'
             if( language == LANG_RUSSIAN && langUkr ) {
-                    fprintf(stderr,"language=%d langUkr=%d langBy=%d calling proc_Ukr\n",language,langUkr,langBy);
                     proc_Ukr();                        //UKRAINIAN "iI & .."
             }
             if( language == LANG_RUSSIAN && !langSer ) //&& !langBul)Almi&Oleg
@@ -917,7 +913,6 @@ got_line:
                     proc_bI(1);                       //glue all 'л'
             }
             if( language == LANG_RUSSIAN && langBy ) {
-                    fprintf(stderr,"language=%d langUkr=%d langBy=%d calling proc_Ukr\n",language,langUkr,langBy);
                     proc_shortu();
                     proc_Ukr();                        //UKRAINIAN "iI & .."
             }
@@ -2674,7 +2669,6 @@ attrlin.Psf=Psf;
 attrlin.incline             =nIncline;
 attrlin.language                =language;
 attrlin.erection                =erection_inc;
-fprintf(stderr, "Setting attrlin language: language=%d attrlin.language=%d\n",language,attrlin.language);
 if( language==LANG_RUSSIAN && multy_language )
     attrlin.language            =LANG_RUSENG;
 if( language==LANG_RUSSIAN && langUkr )
@@ -2685,7 +2679,6 @@ if( language==LANG_RUSSIAN && langBul )
     attrlin.language            =LANG_BULGAR;
 if( language==LANG_RUSSIAN && langBy )
     attrlin.language            =LANG_BELARUSIAN;
-fprintf(stderr, "Setting attrlin language: language=%d attrlin.language=%d\n",language,attrlin.language);
 strcpy((char*)attrlin.VersionName,"RecogVersions");
 CSTR_SetLineAttr(lino, &attrlin);
 if( lin )

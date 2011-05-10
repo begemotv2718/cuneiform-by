@@ -819,7 +819,6 @@ RSTR_FUNC(Bool32) RSTR_EndPage( Handle myPage )
 	lang=LANG_BULGAR;
         if(language == LANG_RUSSIAN && langBy)
           lang = LANG_BELARUSIAN;
-        fprintf(stderr, "RSTR_EndPage language was %d new value %d\n",language,lang);
 
 	if( p2_active==0 )
 	{
@@ -2021,7 +2020,6 @@ RSTR_FUNC(Bool32) RSTR_SetOptions (RSTR_Options *opt)
 	chdir(lnOcrPath);
 	multy_language=FALSE;
 	slanguage=language;
-        fprintf(stderr,"Setting language to LANG_RUSSIAN(3) language=%d\n",language);
 
 	if( language==LANG_RUSENG )
 	{
@@ -2071,7 +2069,6 @@ RSTR_FUNC(Bool32) RSTR_SetOptions (RSTR_Options *opt)
 			}
 		}
 	}
-        fprintf(stderr,"End Setting language to LANG_RUSSIAN(3) language=%d\n",language);
 	if( language== LANG_RUSSIAN )
 	{
 		cuts_glues_methode = 1;
