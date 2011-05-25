@@ -195,7 +195,7 @@ snvers=c->nvers;
 				    memchr("ACEIOUaceiou",let,12) || // Включая нижние акценты "c" 05.07.2002 E.P.
        language==LANG_SPANISH && memchr("AEINOUaeniou",let,12) ||
        language==LANG_GERMAN && memchr("AOUaou",let,6) ||
-       language==LANG_RUSSIAN && memchr("Ґ…",let,2) ||
+       language==LANG_RUSSIAN && memchr("\x85\xA5"/*"Ґ…"*/,let,2) ||
        language==LANG_CROATIAN && memchr("SZCszc",let,6) /*&& !pass_cut*/ ||
        language==LANG_POLISH   && memchr("AESZCNOaeszcno",let,14) || 	// Включая нижние акценты a,e 05.07.2002 E.P.
        language==LANG_PORTUGUESE && memchr("AEOUIaeoui",let,10) ||

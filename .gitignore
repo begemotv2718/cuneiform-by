@@ -9,4 +9,4 @@ debian/tmp/
 debian/*.log
 .pc/
 .gdb_history
-*/*.cdepn
+*.cdepn
