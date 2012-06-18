@@ -57,7 +57,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <stdlib.h>
 #include <fcntl.h>
 #include <string.h>
-/*#include <io.h>*/
+#ifndef _MSC_VER
+#include <unistd.h>
+#endif
 #include <sys/stat.h>
 #include <stdio.h>
 #include <math.h>
@@ -138,7 +140,7 @@ static uchar r35_learn_level=0;
 #ifdef MTR_LEARN
 static r35_fnt=0x80;
 #else
-static r35_fnt=0;
+static uchar r35_fnt=0;
 #endif
 static  int      num_learn=0, max_learn;
 /************************************/
@@ -728,7 +730,12 @@ return (rm>0);
 
 Bool32 recog_cluster5x3(uint16_t Im3x5[], uchar let, VERSION *v)
 {
-int jold, jm, rm, res;
+
+int jold = 0;
+int jm = 0;
+int rm = 0;
+int res = 0;
+
 elm3x5 *curr;
 
 curr = &tab3x5 [ (jm=header3x5[ let ].numel) ];

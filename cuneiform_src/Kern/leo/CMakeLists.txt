@@ -23,7 +23,6 @@ fon32
 msk32
 r3532
 std32
-m
 )
 
 library_hook(leo32)

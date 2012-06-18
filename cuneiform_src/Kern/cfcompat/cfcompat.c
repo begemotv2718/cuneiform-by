@@ -455,7 +455,7 @@ LRESULT DefWindowProc(HWND hWnd, uint Msg, WPARAM wParam, LPARAM lParam) {
 	return 0;
 }
 
-int32_t GetWindowLong(HWND hWnd, int nIndex) {
+intptr_t GetWindowLong(HWND hWnd, int nIndex) {
 	return 0;
 }
 
@@ -511,7 +511,7 @@ mkdtemp(char *tmpl) {
 
 	const int len = strlen (tmpl);
 	char* x_tail = tmpl + len - 6;
-	LARGE_INTEGER rand_seed;
+	LARGE_INTEGER rand_seed = {0, 0};
 	uint64_t value = rand_seed.QuadPart ^ GetCurrentThreadId();
 	unsigned int cnt = 0;
 

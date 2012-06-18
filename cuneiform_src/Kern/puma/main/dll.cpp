@@ -95,7 +95,7 @@ uint32_t ul_reason_for_call,
     case DLL_PROCESS_ATTACH:
 		ghInst = hModule;
 		GetModuleFileName(hModule,szPath,sizeof(szPath));
-		if(p = strstr(_strupr(szPath),"cuneiform.dll"))
+		if(p = strstr(_strupr(szPath),"CUNEIFORM.DLL"))
 			*(p-1)=0;
 		else
 		{
@@ -135,7 +135,7 @@ PUMA_FUNC(Bool) PUMA_Init(uint16_t wHeightCode, void* hStorage)
 }
 //////////////////////////////////////////////////////////////////////////////////
 //
-PUMA_FUNC(Bool32) PUMA_Done()
+PUMA_FUNC(Bool) PUMA_Done()
 {
 Bool32 rc = ModulesDone((void*)ghStorage);
 

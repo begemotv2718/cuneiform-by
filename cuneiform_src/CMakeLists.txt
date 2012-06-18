@@ -28,18 +28,21 @@ if(MSVC)
     endif()
 endif()
 
+
+INCLUDE (CheckIncludeFiles)
+CHECK_INCLUDE_FILES (endian.h HAVE_ENDIAN_H)
+
 add_definitions(-D_USE_RVERLINE_)
 
-include(FindPkgConfig)
-pkg_check_modules(GraphicsMagick QUIET GraphicsMagick++)
-if(GraphicsMagick_FOUND)
+find_package(ImageMagick COMPONENTS Magick++)
+if(ImageMagick_Magick++_FOUND)
     set(USE_MAGICK TRUE)
-    include_directories(${GraphicsMagick_INCLUDE_DIRS})
-    message(STATUS "GraphicsMagick++ found at ${GraphicsMagick_INCLUDE_DIRS}.")
-    set(cli_ext_libs ${GraphicsMagick_LIBRARIES})
+    include_directories(${ImageMagick_Magick++_INCLUDE_DIR})
+    message(STATUS "ImageMagick++ found at ${ImageMagick_Magick++_INCLUDE_DIR}.")
+    set(cli_ext_libs ${ImageMagick_Magick++_LIBRARY})
 else()
     set(USE_MAGICK FALSE)
-    message(STATUS "GraphicsMagick++ not found. Only uncompressed BMP images supported.")
+    message(STATUS "ImageMagick++ not found. Only uncompressed BMP images supported.")
 endif()
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Kern/include/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/Kern/include/config.h)

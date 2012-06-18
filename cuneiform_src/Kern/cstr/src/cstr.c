@@ -183,8 +183,7 @@ CSTR_FUNC(char*)   CSTR_GetReturnString(uint32_t dwError)
 //////////////////////////////////
 // alloc / free & access lines to
 //////////////////////////////////
-CSTR_FUNC(CSTR_line)    CSTR_NewLine(int32_t  lineno, int32_t version,
-    int32_t container)
+CSTR_FUNC(CSTR_line)    CSTR_NewLine(int32_t  lineno, int32_t version, intptr_t container)
 {
 CSTR_head       *line=head.next, *lineins=0, *prev, *next;
 // scan all heads
@@ -2191,7 +2190,8 @@ CSTR_FUNC(Bool32) CSTR_GetExportData(uint32_t dwType, void * pData)
 {
         Bool32 rc = TRUE;
     int32_t  vers = CSTR_VERSION_CODE;
-#define EXPORT(name) *(uint32_t*)(pData)=(uint32_t)name;
+#define EXPORT(name) *(uintptr_t*)(pData)=(uintptr_t)name;
+#define EXPORTNUM(name) *(uint32_t*)(pData)=(uint32_t)name;
         wLowRC = CSTR_ERR_NO;
         switch(dwType)
         {
@@ -2276,7 +2276,7 @@ CSTR_FUNC(Bool32) CSTR_GetExportData(uint32_t dwType, void * pData)
         EXPORT(CSTR_NewUserCode);
         break;
     case    CSTR_FNVERSION:     //      дать версию библиотеки
-        EXPORT(vers);
+        EXPORTNUM(vers);
         break;
     case    CSTR_FNTOTXT:       //  получить текстовый обрах строки
         EXPORT(CSTR_LineToTxt );

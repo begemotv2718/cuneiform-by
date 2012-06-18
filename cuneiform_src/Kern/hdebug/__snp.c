@@ -374,7 +374,7 @@ extern "C" {
 		DrawRectTip(wnd,rc,skew,rgb_color,(int16_t)pen_width,key,pTip);
 	}
 	//////////////////////////////////////////////
-	void LDPUMA_DeleteRects(Handle wnd, uint32_t key)
+	void LDPUMA_DeleteRects(Handle wnd, intptr_t key)
 	{
 		if(DeleteRects)
 		DeleteRects(wnd,key);
@@ -431,6 +431,7 @@ extern "C" {
 	int32_t LDPUMA_ConsoleN(const char * message,...)
 	{
 		int32_t rc = 0;
+#ifdef WIN32
 		if(Console)
 		{
 			va_list marker;
@@ -439,6 +440,7 @@ extern "C" {
 			va_end(marker);
 			LDPUMA_Console("\n");
 		}
+#endif
 		return rc;
 	}
 	//////////////////////////////////////////////
@@ -446,10 +448,12 @@ extern "C" {
 	{
 		if(StatusLine)
 		{
-			va_list marker;
+#ifdef WIN32
+		    va_list marker;
 			va_start( marker, message);
 			StatusLine(message,marker);
 			va_end(marker);
+#endif
 		}
 	}
 	//////////////////////////////////////////////
@@ -457,10 +461,12 @@ extern "C" {
 	{
 		if(MessageBoxOk)
 		{
-			va_list marker;
+#ifdef WIN32
+		    va_list marker;
 			va_start( marker, message);
 			MessageBoxOk(message,marker);
 			va_end(marker);
+#endif
 		}
 	};
 	//////////////////////////////////////////////
@@ -469,10 +475,12 @@ extern "C" {
 		Bool16 rc = FALSE;
 		if(MessageBoxYesNo)
 		{
-			va_list marker;
+#ifdef WIN32
+		    va_list marker;
 			va_start( marker, message);
 			rc = MessageBoxYesNo(message,marker);
 			va_end(marker);
+#endif
 		}
 		return rc;
 	};
@@ -816,19 +824,19 @@ extern "C" {
 	Handle LDPUMA_TimeStamp(const char * name,Handle hTimer)
 	{
 		time_t ltime = 0;
-		int clock1 = 0;
+		intptr_t clock1 = 0;
 		if(LDPUMA_IsActive())
 		{
 			time( &ltime );
 			clock1=clock();
 			if(name==NULL)
-			name = "Time stamp";
+			    name = "Time stamp";
 			if(hTimer==NULL)
-			LDPUMA_Console("%s : %s\n",name,asctime(localtime(&ltime)));
+			    LDPUMA_Console("%s : %s\n",name,asctime(localtime(&ltime)));
 			else
 			{
-				int clockprev = (int)hTimer;
-				LDPUMA_Console("%s : %i msec.\n",name,clock1-clockprev);
+				long clockprev = (long)hTimer;
+				LDPUMA_Console("%s : %ld msec.\n",name,clock1-clockprev);
 			}
 		}
 		return (Handle) clock1;
@@ -890,6 +898,7 @@ extern "C" {
 	int32_t LDPUMA_FPrintf1024(Handle hFile,const char * lpFormat,...)
 	{
 		int32_t rc = 0;
+#ifdef WIN32
 		if(fFPrintf1024 && hFile)
 		{
 			va_list marker;
@@ -897,6 +906,7 @@ extern "C" {
 			rc = fFPrintf1024(hFile,lpFormat,marker);
 			va_end(marker);
 		}
+#endif
 		return rc;
 	}
 	//////////////////////////////////////////////
@@ -989,6 +999,7 @@ extern "C" {
 	int SnpLog(const char * message,...)
 	{
 		int rc = 0;
+#ifdef WIN32
 		if(Console)
 		{
 			va_list marker;
@@ -996,10 +1007,12 @@ extern "C" {
 			rc = Console(message,marker);
 			va_end(marker);
 		}
+#endif
 		return rc;
 	}
 	void SnpStatusLine(const char * message,...)
 	{
+#ifdef WIN32
 		if(StatusLine)
 		{
 			va_list marker;
@@ -1007,6 +1020,7 @@ extern "C" {
 			StatusLine(message,marker);
 			va_end(marker);
 		}
+#endif
 	}
 	void SnpMessBoxOk( char * message )
 	{

@@ -392,7 +392,7 @@ version *pv;
 extern uchar *CellsPage_rstr, *CellsPageEnd_rstr;
 void setup_string()
 {
-int32_t    number_of_cells=((int32_t)CellsPageEnd_rstr-(int32_t)CellsPage_rstr)/sizeof (cell);
+int32_t    number_of_cells=((intptr_t)CellsPageEnd_rstr-(intptr_t)CellsPage_rstr)/sizeof (cell);
  empty_cell=(cell *) (CellsPage_rstr);
  cell_boundary = empty_cell + number_of_cells;//NUMBER_OF_CELLS;
  free_cell_chain=NULL;
@@ -1111,7 +1111,7 @@ if( !c->env ) return 0; // Oleg : can't recog null cells
  short_recog_cell(c);
  if(pass4_in) // Dangerous
  { c->nvers=c->vers[0].let=c->vers[0].prob=0; } // kill events
- if(language == LANG_RUSSIAN) r_criteria(c,NULL);
+ if(language == PUMA_LANG_RUSSIAN) r_criteria(c,NULL);
  return second_recog(c);
 }
 
@@ -1222,12 +1222,12 @@ int16_t stick_w_4()
  if (answ == 0) goto ret;
  s_ans('!');
  if ((answ & 0xC0) == 0x80)   s_ans('1');
- if (language == LANG_RUSSIAN ){ s_ans('|'); goto ret; }
+ if (language == PUMA_LANG_RUSSIAN ){ s_ans('|'); goto ret; }
  if ((answ & 0x03) == 0x02)   s_ans('f');
  if ((answ & 0x0C) == 0x08)   s_ans('r');
  if ((answ & 0x30) == 0x20)   s_ans('t');
 
- if (language == LANG_POLISH )
+ if (language == PUMA_LANG_POLISH )
 	if ((answ & 0x300)== 0x300)  s_ans(POLISH_l);
 
  if (rec_ptr - start_rec < 7) 	s_ans('j');

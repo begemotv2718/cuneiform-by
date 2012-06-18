@@ -130,7 +130,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    #define CONSOLE_is_stdConsole
    #define CONSOLE_IF( statm )   if(statm) stdConsole
 
-   #include <assert.h>
+   #include<assert.h>
 
    #define ifret( cond ) \
       {  if (!(cond)) { stdSetError( ER_INTERNAL, #cond, __FILE__, __LINE__); return; } }

@@ -57,19 +57,20 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <math.h>
 #include <string.h>
 #include <fcntl.h>
-/*#include <io.h>*/
 #include <stdio.h>
 #include <stdlib.h>
+#ifndef _MSC_VER
+#include <unistd.h>
+#endif
 #include "loc.h"
 #include "struct.h"
-
 #include <sys/stat.h>
 
 
 //-------------- FROM DIF.DLL
 
 
-static evn_error_code=ER_LOC_NO_ERROR;
+static int16_t evn_error_code=ER_LOC_NO_ERROR;
 char alphabet[256];
 uchar   language;
 Bool32  enable_save_stat=FALSE;

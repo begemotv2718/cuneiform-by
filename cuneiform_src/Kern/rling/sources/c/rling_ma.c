@@ -60,6 +60,9 @@
 #include <fcntl.h>
 #include <string.h>
 #include <stdlib.h>
+#ifndef _MSC_VER
+#include <unistd.h>
+#endif
 #include "compat_defs.h"
 /*************************************************************************/
 /* tg_spell.c -  general spelling loop. It scans ED-file,
@@ -259,7 +262,7 @@ void GetRecFileName(int16_t tab, int16_t lang, pchar wname) {
 void append_by_lang(int16_t lang, pchar src, pchar dst) {
 	strcpy(dst, src);
 
-	if ((lang >= 0) && (lang < LANG_TOTAL)) {
+	if ((lang >= 0) && (lang < PUMA_LANG_TOTAL)) {
 		strcat(dst, lang_suff[lang]);
 	}
 	/* Закомментарил 09.07.2001 E.P.
