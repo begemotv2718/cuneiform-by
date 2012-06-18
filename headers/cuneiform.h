@@ -55,38 +55,38 @@ enum PUMA_FORMATS {
     PUMA_TOHOCR = 0x4000,
 };
 
-enum Languages {
-    LANG_ENGLISH    = 0,
-    LANG_GERMAN     = 1,
-    LANG_FRENCH     = 2,
-    LANG_RUSSIAN    = 3,
-    LANG_SWEDISH    = 4,
-    LANG_SPANISH    = 5,
-    LANG_ITALIAN    = 6,
-    LANG_RUSENG     = 7,
-    LANG_UKRAINIAN  = 8,
-    LANG_SERBIAN    = 9,
-    LANG_CROATIAN   = 10,
-    LANG_POLISH     = 11,
-    LANG_DANISH     = 12,
-    LANG_PORTUGUESE = 13,
-    LANG_DUTCH      = 14,
-    LANG_DIG        = 15,
-    LANG_UZBEK      = 16,
-    LANG_KAZ        = 17,
-    LANG_KAZ_ENG    = 18,
-    LANG_CZECH      = 19,
-    LANG_ROMAN      = 20,
-    LANG_HUNGAR     = 21,
-    LANG_BULGAR     = 22,
-    LANG_SLOVENIAN  = 23,
-    LANG_LATVIAN    = 24,
-    LANG_LITHUANIAN = 25,
-    LANG_ESTONIAN   = 26,
-    LANG_TURKISH    = 27,
-    LANG_TOTAL      = 28,
-    LG_LAT          =  1,
-    LG_CYR          =  2,
+enum Puma_Languages {
+    PUMA_LANG_ENGLISH    = 0,
+    PUMA_LANG_GERMAN     = 1,
+    PUMA_LANG_FRENCH     = 2,
+    PUMA_LANG_RUSSIAN    = 3,
+    PUMA_LANG_SWEDISH    = 4,
+    PUMA_LANG_SPANISH    = 5,
+    PUMA_LANG_ITALIAN    = 6,
+    PUMA_LANG_RUSENG     = 7,
+    PUMA_LANG_UKRAINIAN  = 8,
+    PUMA_LANG_SERBIAN    = 9,
+    PUMA_LANG_CROATIAN   = 10,
+    PUMA_LANG_POLISH     = 11,
+    PUMA_LANG_DANISH     = 12,
+    PUMA_LANG_PORTUGUESE = 13,
+    PUMA_LANG_DUTCH      = 14,
+    PUMA_LANG_DIG        = 15,
+    PUMA_LANG_UZBEK      = 16,
+    PUMA_LANG_KAZ        = 17,
+    PUMA_LANG_KAZ_ENG    = 18,
+    PUMA_LANG_CZECH      = 19,
+    PUMA_LANG_ROMAN      = 20,
+    PUMA_LANG_HUNGAR     = 21,
+    PUMA_LANG_BULGAR     = 22,
+    PUMA_LANG_SLOVENIAN  = 23,
+    PUMA_LANG_LATVIAN    = 24,
+    PUMA_LANG_LITHUANIAN = 25,
+    PUMA_LANG_ESTONIAN   = 26,
+    PUMA_LANG_TURKISH    = 27,
+    PUMA_LANG_TOTAL      = 28,
+    PUMA_LG_LAT          =  1,
+    PUMA_LG_CYR          =  2,
 };
 
 
@@ -120,15 +120,15 @@ enum PUMA_EXPORT_ENTRIES {
     PUMA_FNPUMA_EnumFormats,
     PUMA_FNPUMA_EnumCodes,
     PUMA_Word32_Language,
-    PUMA_Bool32_Speller,
-    PUMA_Bool32_OneColumn,
-    PUMA_Bool32_Fax100,
-    PUMA_Bool32_DotMatrix,
+    PUMA_PumaBool32_Speller,
+    PUMA_PumaBool32_OneColumn,
+    PUMA_PumaBool32_Fax100,
+    PUMA_PumaBool32_DotMatrix,
     PUMA_pchar_UserDictName,
-    PUMA_Bool32_Bold,
-    PUMA_Bool32_Italic,
-    PUMA_Bool32_Size,
-    PUMA_Bool32_Format,
+    PUMA_PumaBool32_Bold,
+    PUMA_PumaBool32_Italic,
+    PUMA_PumaBool32_Size,
+    PUMA_PumaBool32_Format,
     PUMA_pchar_SerifName,
     PUMA_pchar_SansSerifName,
     PUMA_pchar_CourierName,
@@ -144,13 +144,13 @@ enum PUMA_EXPORT_ENTRIES {
     PUMA_FNPUMA_ProgressStart,
     PUMA_FNPUMA_ProgressFinish,
     PUMA_FNPUMA_ProgressStep,
-    PUMA_Bool32_AutoRotate,
+    PUMA_PumaBool32_AutoRotate,
     PUMA_Point32_PageSize,
     PUMA_FNPUMA_RenameImageName,
     PUMA_FNPUMA_XSetTemplate,
     PUMA_Handle_CurrentEdPage,
     PUMA_FNPUMA_Save,
-    PUMA_Bool32_PreserveLineBreaks,
+    PUMA_PumaBool32_PreserveLineBreaks,
     PUMA_FNPUMA_XOpenClbk,
     PUMA_LPPUMAENTRY_CED,
     PUMA_LPPUMAENTRY_ROUT,
@@ -160,36 +160,41 @@ enum PUMA_EXPORT_ENTRIES {
     PUMA_FNPUMA_XGetTemplate
 };
 
-typedef int Bool;
+// This is the same as CF's internal Bool.
+// It has a different name so it does not clash
+// with other libraries' boolean definitions.
+typedef int PumaBool;
+// Same for this one.
+typedef void* PumaHandle;
 
-Bool PUMA_Init(uint16_t wHeightCode, void* hStorage);
-Bool PUMA_Done();
+PumaBool PUMA_Init(uint16_t wHeightCode, void* hStorage);
+PumaBool PUMA_Done();
 uint32_t PUMA_GetReturnCode();
 char * PUMA_GetReturnString(uint32_t dwError);
-Bool PUMA_GetExportData(uint32_t dwType, void * pData);
-Bool PUMA_SetImportData(uint32_t dwType, void * pData);
+PumaBool PUMA_GetExportData(uint32_t dwType, void * pData);
+PumaBool PUMA_SetImportData(uint32_t dwType, void * pData);
 
-Bool PUMA_XOpen(void * DIB_image, const char *identifier);
-Bool PUMA_XClose(void);
-Bool PUMA_XFinalRecognition(void);
-Bool PUMA_XSave(const char * lpOutFileName, int32_t lnFormat, int32_t lnCode );
+PumaBool PUMA_XOpen(void * DIB_image, const char *identifier);
+PumaBool PUMA_XClose(void);
+PumaBool PUMA_XFinalRecognition(void);
+PumaBool PUMA_XSave(const char * lpOutFileName, int32_t lnFormat, int32_t lnCode );
+uint32_t PUMA_SaveToMemory(PumaHandle hEdPage, int32_t lnFormat, int32_t lnCode, char * lpMem, uint32_t size );
 /*
-Bool32 PUMA_XPageAnalysis(void);
+PumaBool32 PUMA_XPageAnalysis(void);
 int32_t PUMA_EnumLanguages(int32_t nPrev );
 int32_t PUMA_EnumFormats(int32_t nPrev );
 int32_t PUMA_EnumCodes(int32_t format, int32_t nPrev );
 int32_t PUMA_EnumFormatMode(int32_t nPrev );
 int32_t PUMA_EnumTable(int32_t nPrev );
 int32_t PUMA_EnumPicture(int32_t nPrev );
-Bool32 PUMA_XGetRotateDIB(void ** lpDIB, Point32 * p);
+PumaBool32 PUMA_XGetRotateDIB(void ** lpDIB, Point32 * p);
 void  PUMA_RenameImageName(char * name);
-Bool32 PUMA_XSetTemplate(Rect32 rect);
-Bool32 PUMA_XGetTemplate(Rect32 *pRect);
-Bool32 PUMA_Save(Handle hEdPage, const char * lpOutFileName, int32_t lnFormat, int32_t lnCode, Bool32 bAppend );
-Bool32 PUMA_XOpenClbk,(PUMAIMAGECALLBACK CallBack,const char * lpFileName);
-uint32_t PUMA_SaveToMemory(Handle hEdPage, int32_t lnFormat, int32_t lnCode, char * lpMem, uint32_t size );
+PumaBool32 PUMA_XSetTemplate(Rect32 rect);
+PumaBool32 PUMA_XGetTemplate(Rect32 *pRect);
+PumaBool32 PUMA_Save(Handle hEdPage, const char * lpOutFileName, int32_t lnFormat, int32_t lnCode, PumaBool32 bAppend );
+PumaBool32 PUMA_XOpenClbk,(PUMAIMAGECALLBACK CallBack,const char * lpFileName);
 void PUMA_GetSpecialBuffer(char * szResult,int32_t *nResultLength);
-Bool32 PUMA_SetSpecialProject(uint8_t nSpecPrj);
+PumaBool32 PUMA_SetSpecialProject(uint8_t nSpecPrj);
 */
 #ifdef __cplusplus
 }
