@@ -61,7 +61,7 @@
 #define _FON_CLU_MEMORY_1
 #endif
 #define _STORE_LETTERS1
-
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <setjmp.h>
@@ -290,7 +290,8 @@ uchar CodePages[PUMA_LANG_TOTAL] = { // 29.08.2000 E.P.
 				BALTIC_CHARSET, // LANG_LATVIAN	  24
 				BALTIC_CHARSET, // LANG_LITHUANIAN 25
 				BALTIC_CHARSET, // LANG_ESTONIAN	  26
-				TURKISH_CHARSET // LANG_TURKISH	  27
+				TURKISH_CHARSET, // LANG_TURKISH	  27
+                                CSTR_RUSSIAN_CHARSET //LANG_BELARUSIAN    28
 		};
 
 static char *tab3x5[] = { "rec3.dat", // LANG_ENGLISH   0
@@ -320,7 +321,8 @@ static char *tab3x5[] = { "rec3.dat", // LANG_ENGLISH   0
 		"rec3blt.dat", // LANG_LATVIAN	    24
 		"rec3blt.dat", // LANG_LITHUANIAN  25
 		"rec3blt.dat", // LANG_ESTONIAN	26
-		"rec3tur.dat" // LANG_TURKISH		27
+		"rec3tur.dat", // LANG_TURKISH		27
+                "rec3rus.dat"  // LANG_BELARUSIAN       28
 		};
 
 static char *tabevn1[] = { "rec1.dat", // LANG_ENGLISH   0
@@ -350,7 +352,8 @@ static char *tabevn1[] = { "rec1.dat", // LANG_ENGLISH   0
 		"rec1blt.dat", // LANG_LATVIAN	    24
 		"rec1blt.dat", // LANG_LITHUANIAN  25
 		"rec1blt.dat", // LANG_ESTONIAN	26
-		"rec1tur.dat" // LANG_TURKISH		27
+		"rec1tur.dat", // LANG_TURKISH		27
+                "rec1rus.dat"  // LANG_BELARUSIAN       28
 		};
 static char *tabevn2[] = { "rec2.dat", // LANG_ENGLISH   0
 		"rec2.dat", // LANG_GERMAN    1
@@ -379,7 +382,8 @@ static char *tabevn2[] = { "rec2.dat", // LANG_ENGLISH   0
 		"rec2blt.dat", // LANG_LATVIAN	    24
 		"rec2blt.dat", // LANG_LITHUANIAN  25
 		"rec2blt.dat", // LANG_ESTONIAN	26
-		"rec2tur.dat" // LANG_TURKISH		27
+		"rec2tur.dat", // LANG_TURKISH		27
+                "rec2rus.dat"  // LANG_BELARUSIAN       28
 		};
 
 uchar * CellsPage_rstr, *CellsPageEnd_rstr;
@@ -813,6 +817,8 @@ RSTR_FUNC(Bool32) RSTR_EndPage( Handle myPage )
 	lang=PUMA_LANG_UKRAINIAN;
 	if( language==PUMA_LANG_RUSSIAN && langBul) // 01.09.2000 E.P.
 	lang=PUMA_LANG_BULGAR;
+        if(language == PUMA_LANG_RUSSIAN && langBy)
+          lang = LANG_BELARUSIAN;
 
 	if( p2_active==0 )
 	{
@@ -2005,7 +2011,7 @@ RSTR_FUNC(Bool32) RSTR_SetOptions (RSTR_Options *opt)
 	line_rerecog=FALSE;
 	line_readyBL=FALSE;
 	line_tabcell=0;
-	langSer=langUkr=langBul=0; // langBul 01.09.2000 E.P.
+	langBy=langSer=langUkr=langBul=0; // langBul 01.09.2000 E.P.
 
 	if( mmx )
 	set_MMX_addr();
@@ -2035,6 +2041,11 @@ RSTR_FUNC(Bool32) RSTR_SetOptions (RSTR_Options *opt)
 		language = PUMA_LANG_RUSSIAN;
 		langBul =TRUE;
 	}
+        if( language==LANG_BELARUSIAN)
+        {
+                language = LANG_RUSSIAN;
+                langBy = TRUE;
+        }
 
 	if( old_language!=opt->language )
 	{
@@ -2467,6 +2478,11 @@ RSTR_FUNC(Bool32) RSTR_SetImportData (uint32_t dwType, const void * pData)
 		{
 			language= PUMA_LANG_RUSSIAN;
 			langUkr=TRUE;
+		}
+		if( language==PUMA_LANG_BELARUSIAN )
+		{
+			language= PUMA_LANG_RUSSIAN;
+			langBy=TRUE;
 		}
 		if( language==PUMA_LANG_BULGAR ) // 01.09.2000 E.P.
 		{

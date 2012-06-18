@@ -86,7 +86,8 @@ enum Puma_Languages {
     PUMA_LANG_LITHUANIAN = 25,
     PUMA_LANG_ESTONIAN   = 26,
     PUMA_LANG_TURKISH    = 27,
-    PUMA_LANG_TOTAL      = 28,
+    PUMA_LANG_BELARUSIAN = 28,
+    PUMA_LANG_TOTAL      = 29,
     PUMA_LG_LAT          =  1,
     PUMA_LG_CYR          =  2,
 };

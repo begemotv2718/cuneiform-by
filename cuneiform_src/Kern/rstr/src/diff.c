@@ -195,7 +195,7 @@ snvers=c->nvers;
 				    memchr("ACEIOUaceiou",let,12) || // Включая нижние акценты "c" 05.07.2002 E.P.
        language==PUMA_LANG_SPANISH && memchr("AEINOUaeniou",let,12) ||
        language==PUMA_LANG_GERMAN && memchr("AOUaou",let,6) ||
-       language==PUMA_LANG_RUSSIAN && memchr("Ґ…",let,2) ||
+       language==PUMA_LANG_RUSSIAN && memchr("\x85\xA5"/*"Ґ…"*/,let,2) ||
        language==PUMA_LANG_CROATIAN && memchr("SZCszc",let,6) /*&& !pass_cut*/ ||
        language==PUMA_LANG_POLISH   && memchr("AESZCNOaeszcno",let,14) || 	// Включая нижние акценты a,e 05.07.2002 E.P.
        language==PUMA_LANG_PORTUGUESE && memchr("AEOUIaeoui",let,10) ||
@@ -613,7 +613,7 @@ int16_t ij_test(cell *c)
 		return 0;
 */
 
-   if( language == PUMA_LANG_RUSSIAN && langUkr )
+   if( language == PUMA_LANG_RUSSIAN && (langUkr || langBy) )
      if( c->w >= c->h - 2 )
        goto ret0;
 
@@ -831,7 +831,7 @@ cell *dot_ij(cell *c)
  int16_t e,d,H;
  uchar let = 0;
 
-   if( language == PUMA_LANG_RUSSIAN && langUkr )
+   if( language == PUMA_LANG_RUSSIAN && (langUkr || langBy) )
      return  dot_iUkr(c);
 
  csv=NULL;

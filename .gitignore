@@ -1,4 +1,12 @@
+builddir2/
+builddir3/
+tmpres/
+tmpres2/
 obj-x86_64-linux-gnu/
 debian/cuneiform/
 debian/cuneiform-common/
 debian/tmp/
+debian/*.log
+.pc/
+.gdb_history
+*.cdepn

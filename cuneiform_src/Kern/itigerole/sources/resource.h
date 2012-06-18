@@ -139,6 +139,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define IDS_LANG_TURKISH                171
 #define IDS_CRASH_MAIL                  172
 #define IDS_CRASH_CAPTION               173
+#define IDS_LANG_BELARUSIAN             174
 
 // Next default values for new objects
 //

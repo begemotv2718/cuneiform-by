@@ -13,6 +13,7 @@ src/alcutfun.c
 src/alphabet.c
 src/atlant.c
 src/baton.c
+src/belarus.c
 src/bold.c
 src/celldump.c
 src/cg_hcut.c

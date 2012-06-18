@@ -75,7 +75,7 @@ static Bool32 CyrilLanguage(void)
 		 language == PUMA_LANG_RUSSIAN   || language == PUMA_LANG_ENGLISH ||
          language == PUMA_LANG_UKRAINIAN || language == PUMA_LANG_SERBIAN ||
          language == PUMA_LANG_BULGAR    ||
-         language == PUMA_LANG_RUSENG
+         language == PUMA_LANG_RUSENG || language == PUMA_LANG_BELARUSIAN
 		)
 	{
          langCyrilRoman = 1;

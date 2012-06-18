@@ -68,6 +68,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	  int multy_language;
 	  int langUkr;
 	  int langSer;
+          int langBy;
 
 	  int  line_number;
 	  int  line_alphabet;

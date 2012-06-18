@@ -59,6 +59,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //                      Third pass                                  //
 //                                                                  //
 //////////////////////////////////////////////////////////////////////
+#include <stdio.h>
 #include <stdlib.h>
  #include <sys/stat.h>
 /* #include <io.h> */
@@ -232,6 +233,9 @@ if( language==PUMA_LANG_RUSSIAN && langSer )
     attrlin.language            =PUMA_LANG_SERBIAN;
 if( language==PUMA_LANG_RUSSIAN && langBul )
     attrlin.language            =PUMA_LANG_BULGAR;
+if( language==PUMA_LANG_RUSSIAN && langBy )
+    attrlin.language            =PUMA_LANG_BELARUSIAN;
+
 strcpy((char*)attrlin.VersionName,"EmptyLine");
 //attrlin.Flags|=CSTR_STR_EMPTY;
 CSTR_SetLineAttr(lino, &attrlin);
@@ -268,6 +272,8 @@ void save_rest_bases(int16_t mode, int16_t line_crit);
 void save_rest_incline(int16_t mode);
 
 void proc_Ukr( void ); // see module UKR.C
+
+void proc_shortu(void); //belarus.c
 
 void cuts_glues(void);
 
@@ -725,7 +731,7 @@ ready_BL:;
 
 // распознать 'Й'. Русская буква с шапкой распознаётся уникальным алгоритмом,
 //		а не через accent(), как русская буква 'Ё'
-        if( language == PUMA_LANG_RUSSIAN && !langUkr && !langSer ) //&& !langBul) Almi&Oleg
+        if( language == PUMA_LANG_RUSSIAN && !langUkr && !langSer && !langBy ) //&& !langBul) Almi&Oleg
             proc_ii();//paste '©'
 
 
@@ -904,6 +910,10 @@ got_line:
 
             if(language == PUMA_LANG_RUSSIAN && !langUkr && !langSer && !langBul)
                     proc_bI(1);                       //glue all 'л'
+            }
+            if( language == LANG_RUSSIAN && langBy ) {
+                    proc_shortu();
+                    proc_Ukr();                        //UKRAINIAN "iI & .."
             }
 
 // распознавание особых символов TM
@@ -1443,6 +1453,8 @@ if( lang==PUMA_LANG_RUSSIAN )
         lang=PUMA_LANG_UKRAINIAN;
 	if( langBul )
         lang=PUMA_LANG_BULGAR;
+    if(langBy)
+      lang=PUMA_LANG_BELARUSIAN;
     }
 for(c=cell_f()->next;c!=cell_l();c=c->next)
   c->language = lang;
@@ -2664,6 +2676,8 @@ if( language==PUMA_LANG_RUSSIAN && langSer )
     attrlin.language            =PUMA_LANG_SERBIAN;
 if( language==PUMA_LANG_RUSSIAN && langBul )
     attrlin.language            =PUMA_LANG_BULGAR;
+if( language==PUMA_LANG_RUSSIAN && langBy )
+    attrlin.language            =PUMA_LANG_BELARUSIAN;
 strcpy((char*)attrlin.VersionName,"RecogVersions");
 CSTR_SetLineAttr(lino, &attrlin);
 if( lin )
@@ -3451,7 +3465,7 @@ return 0;
 int16_t p2_GetPs_up(void)
 {
 cell *  c;
-char    lets_up[]="WERTYUOPQASDFGHJKLZXCVBNM‰“Љ…Ќѓ‡•љ”›‚ЂЏђЋ‹†ќџ—‘Њ€’њЃћ012234567890";
+char    lets_up[]="WERTYUOPQASDFGHJKLZXCVBNM‰“Љ…Ќѓ?‡•љ”›‚ЂЏђЋ‹†ќџ—‘Њ€’њЃћ012234567890";
 //				  "WERTYUOPQASDFGHJKLZXCVBNMЙУКЕНГШЗХЪФЫВАПРОЛЖЭЯЧСМИТЬБЮ012234567890";
 
 int32_t    s2,s1,n,h,s12,na,nl;

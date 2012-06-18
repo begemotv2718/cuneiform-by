@@ -216,6 +216,7 @@ static long enumLanguage[] = {
     PUMA_LANG_LITHUANIAN,	// 25
     PUMA_LANG_ESTONIAN  ,	// 26
     PUMA_LANG_TURKISH   ,	// 27
+    PUMA_LANG_BELARUSIAN,   // 28
     -1
 };
 

@@ -1598,7 +1598,8 @@ CSTR_EASTEUROPE_CHARSET	     , // LANG_SLOVENIAN  23
 BALTIC_CHARSET				 , // LANG_LATVIAN	  24
 BALTIC_CHARSET				 , // LANG_LITHUANIAN 25
 BALTIC_CHARSET				 , // LANG_ESTONIAN	  26
-TURKISH_CHARSET				   // LANG_TURKISH	  27
+TURKISH_CHARSET				 ,  // LANG_TURKISH	  27
+CSTR_RUSSIAN_CHARSET                        // LANG_BELARUSIAN    28
 };
 //////////////////////
 Bool32 p2_StoreVersions(CSTR_rast rast,RecVersions *rver,int lang)

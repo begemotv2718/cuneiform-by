@@ -810,7 +810,8 @@ alph_ce             , // LANG_SLOVENIAN  23
 alph_english        , // LANG_LATVIAN	 24
 alph_english        , // LANG_LITHUANIAN 25
 alph_english        , // LANG_ESTONIAN	 26
-alph_english          // LANG_TURKISH	 27
+alph_english        ,  // LANG_TURKISH	 27
+alph_russian          // LANG_BELARUSIAN
 };
 static void list_latin_letters();	// 01.09.2000 E.P.
 static void list_baltic_letters();	// 09.07.2001 E.P.
@@ -904,6 +905,77 @@ if( !langUkr && !langSer && !langBul )	// 31.08.2000 E.P.
      let_lindef3[r_e_2dot]= 0;
      }
 
+  if( langBy ){
+        alphabet[UKR_I ]=1;
+        alphabet[UKR_i ]=1;
+        alphabet[liga_i]=1;
+
+        alphabet['I' ]=1;
+        alphabet['i' ]=1;
+        alphabet[u_bel] = 1;
+        alphabet[U_bel] = 1;
+        alphabet[UKR_II]=0;
+        alphabet[UKR_ii]=0;
+        alphabet[UKR_E ]=0;
+        alphabet[UKR_e ]=0;
+        alphabet[UKR_G ]=0;
+        alphabet[UKR_g ]=0;
+
+
+        alphabet[SERB_hh]=0;
+        alphabet[SERB_h ]=0;
+        alphabet['J']=0;
+        alphabet['j' ]=0;
+
+     strcpy(decode_ASCII_to_[UKR_I ] , "\xB2");
+     strcpy(decode_ASCII_to_[UKR_i ] , "\xB3");
+     strcpy(decode_ASCII_to_[u_bel],"\xA2");
+     strcpy(decode_ASCII_to_[U_bel],"\xA1");
+
+
+     let_linpos[UKR_I] = 0x11;   // base lines for diskrim
+     let_linpos[UKR_i] = 0x11;
+     //let_linpos['I'] = 0x11;
+     //let_linpos['i'] = 0x11;
+     let_linpos[u_bel] = 0xa2;
+     let_linpos[U_bel] = 0x11;
+
+     let_lindef[UKR_I] = 0;   // base lines for its determination
+     let_lindef[UKR_i] = 0;
+     let_lindef['I'] = 0;
+     let_lindef['i'] = 0;
+     let_lindef[u_bel]=0x0a;
+     let_lindef[U_bel]=0x05;
+
+     let_lincomp[UKR_I] = 0;  // detems klasres for 3x5
+     let_lincomp[UKR_i] = 0;
+     let_lincomp['I'] = 0;
+     let_lincomp['i'] = 0;
+     let_lincomp[u_bel]=0x04;
+     let_lincomp[U_bel]=0x0a;
+
+     let_linshape[UKR_I] = 0;  // shape of letter
+     let_linshape[UKR_i] = 0;
+     let_linshape['I'] = 0;
+     let_linshape['i'] = 0;
+     let_linshape[u_bel] = 0x08;
+     let_linshape[U_bel]= 0;
+
+
+     let_sans_acc[UKR_I] = UKR_I; // for accent is used in abris
+     let_sans_acc[UKR_i] = UKR_i;
+     let_sans_acc['I'] = 'I';
+     let_sans_acc['i'] = 'i';
+     let_sans_acc[u_bel]='\x95';
+     let_sans_acc[U_bel]='\xA5';
+
+     let_lindef3[UKR_I] = 0;  // ???
+     let_lindef3[UKR_i] = 0;
+     let_lindef3['I'] = 0;  // ???
+     let_lindef3['i'] = 0;
+     let_lindef3[u_bel] = 0x0a;
+     let_lindef3[U_bel] = 0x05;
+  }
   if( langUkr ){
         alphabet[UKR_I ]=1;
         alphabet[UKR_i ]=1;
@@ -2940,6 +3012,7 @@ Bool    is_russian_language(uchar lang)
 return (lang==PUMA_LANG_RUSSIAN ||lang==PUMA_LANG_UKRAINIAN ||
 		lang==PUMA_LANG_SERBIAN ||lang==PUMA_LANG_UZBEK ||
 		lang==PUMA_LANG_BULGAR	// 01.09.2000 E.P.
+                || lang==PUMA_LANG_BELARUSIAN
 		);
 }
 //************************************************************

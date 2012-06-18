@@ -928,7 +928,7 @@ void make_all_glues(void);
   {
    if( !langUkr )
     proc_bI(0);//paste cutted '|'
-   else if( langUkr )
+   if( langUkr || langBy )
     proc_Ukr();//UKRAINIAN "iI & .."
 
     proc_ii();//paste '©'
@@ -1069,6 +1069,7 @@ int32_t p2_GetP2Globals(P2GLOBALS *p2globals)
 	  p2globals->multy_language = multy_language;
 	  p2globals->langUkr = langUkr;
 	  p2globals->langSer = langSer;
+          p2globals->langBy = langBy;
 
 	  p2globals->line_number = line_number;
 	  p2globals->line_alphabet = line_alphabet;
@@ -1090,6 +1091,7 @@ int32_t p2_SetP2Globals(P2GLOBALS *p2globals)
 	  multy_language = p2globals->multy_language ;
 	  langUkr = p2globals->langUkr;
 	  langSer = p2globals->langSer ;
+          langBy = p2globals->langBy;
 
 	  line_number = p2globals->line_number;
 	  line_alphabet = p2globals->line_alphabet;

@@ -64,7 +64,7 @@
 #include "compat_defs.h"
 
 static uchar alph_russian[256] = {
-//  0 1 2 3 4 5 6 7 8 9 A B C D E F
+            //  0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 0
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 1
 		0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, // 2
@@ -185,7 +185,8 @@ static uchar *alph_lang[PUMA_LANG_TOTAL] = { alph_english, // LANG_ENGLISH    0
 		alph_english, // LANG_LATVIAN	 24
 		alph_english, // LANG_LITHUANIAN 25
 		alph_english, // LANG_ESTONIAN	 26
-		alph_english // LANG_TURKISH	 27
+		alph_english, // LANG_TURKISH	 27
+                alph_russian  // LANG_BELARUSIAN 28
 		};
 
 Bool16 rec_set_alpha(uchar language, uchar *alphabet) {
@@ -238,6 +239,36 @@ Bool16 rec_set_alpha(uchar language, uchar *alphabet) {
 		alphabet[UKR_e] = 1;
 		alphabet[UKR_G] = 1;
 		alphabet[UKR_g] = 1;
+		alphabet[liga_i] = 1;
+
+		alphabet[liga_exm] = 1;
+		alphabet[liga_qm] = 1;
+		alphabet[liga_uperc] = 1;
+		alphabet[liga_lperc] = 1;
+	}
+	if (language == PUMA_LANG_BELARUSIAN) {
+		alphabet[r_cu_d] = 1;
+		alphabet[r_cu_g] = 1;
+		alphabet[r_cu_m] = 1;
+		alphabet[r_cu_u] = 1;
+		alphabet[r_cu_z] = 1;
+		alphabet[r_cu_a] = 1;
+		alphabet['I'] = 1;
+		alphabet['i'] = 1;
+		alphabet[(uchar) 'ù'] = 0;
+		alphabet[(uchar) 'Ù'] = 0;
+		alphabet[(uchar) 'è'] = 0;
+		alphabet[(uchar) 'È'] = 0;
+		alphabet[UKR_I] = 1;
+		alphabet[UKR_i] = 1;
+		alphabet[UKR_II] = 0;
+		alphabet[UKR_ii] = 0;
+		alphabet[UKR_E] = 0;
+		alphabet[UKR_e] = 0;
+		alphabet[UKR_G] = 0;
+		alphabet[UKR_g] = 0;
+                alphabet[u_bel] = 1;
+                alphabet[U_bel] = 1;
 		alphabet[liga_i] = 1;
 
 		alphabet[liga_exm] = 1;
@@ -666,7 +697,8 @@ static const char *tabevn1[PUMA_LANG_TOTAL] = { "rec1.dat", // LANG_ENGLISH		0
 		"rec1blt.dat", // LANG_LATVIAN	    24
 		"rec1blt.dat", // LANG_LITHUANIAN  25
 		"rec1blt.dat", // LANG_ESTONIAN	26
-		"rec1tur.dat" // LANG_TURKISH		27
+		"rec1tur.dat", // LANG_TURKISH		27
+        "rec1rus.dat"  // LANG_BELARUSIAN       28
 		};
 
 static const char *tabevn2[PUMA_LANG_TOTAL] = { "rec2.dat", // LANG_ENGLISH		0
@@ -696,7 +728,8 @@ static const char *tabevn2[PUMA_LANG_TOTAL] = { "rec2.dat", // LANG_ENGLISH		0
 		"rec2blt.dat", // LANG_LATVIAN	    24
 		"rec2blt.dat", // LANG_LITHUANIAN  25
 		"rec2blt.dat", // LANG_ESTONIAN	26
-		"rec2tur.dat" // LANG_TURKISH		27
+		"rec2tur.dat", // LANG_TURKISH		27
+        "rec2rus.dat"  // LANG_BELARUSIAN       28
 		};
 
 Bool16 rec_load_tables(uchar language) {

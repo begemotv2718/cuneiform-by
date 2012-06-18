@@ -94,6 +94,7 @@ static const langlist langs[] = {
         {PUMA_LANG_DANISH,    "dan"},
         {PUMA_LANG_PORTUGUESE,"por"},
         {PUMA_LANG_DUTCH,     "dut"},
+        {PUMA_LANG_BELARUSIAN, "by"},
 //        {LANG_DIG,       "dig"}, // This probably means "recognize digits only".
 //        {LANG_UZBEK,     "uzb"}, // These don't seem to have data files. Thus they are disabled.
 //        {LANG_KAZ,       "kaz"},
@@ -107,6 +108,7 @@ static const langlist langs[] = {
         {PUMA_LANG_LITHUANIAN,"lit"},
         {PUMA_LANG_ESTONIAN,  "est"},
         {PUMA_LANG_TURKISH,   "tur"},
+        {PUMA_LANG_BELARUSIAN, "bel"},
         {-1, NULL}
 };
 

@@ -341,6 +341,10 @@ is_ligas_lat(let))))
 #define  UKR_G   0xC7
 #define  UKR_g   0xD6
 
+/**** belarusian u_breve ***/
+#define U_bel 0xCE
+#define u_bel 0xCD
+
 //       LIGATURA ASCII      ALT ANSI
 /***** serbian symbols ! intersect foreign languages symbols **************/
 #define  SERB_HH  0xD3 //211 M У Ox80 128 Ђ
