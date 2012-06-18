@@ -423,7 +423,7 @@ int16_t check_numb_2_9 (uchar c)
     }
  }
 
- if( language==LANG_RUSSIAN && langBy ){
+ if( language==PUMA_LANG_RUSSIAN && langBy ){
   switch(c)
     {
     case UKR_I  : return TRUE;
@@ -774,7 +774,7 @@ if( language==PUMA_LANG_RUSSIAN && langUkr ){
     case UKR_ii : return TRUE;
     }
  }
-if( language==LANG_RUSSIAN && langBy ){
+if( language==PUMA_LANG_RUSSIAN && langBy ){
   switch(c)
     {
     case UKR_i  : return TRUE;

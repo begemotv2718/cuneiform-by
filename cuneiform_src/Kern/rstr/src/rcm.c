@@ -818,7 +818,7 @@ RSTR_FUNC(Bool32) RSTR_EndPage( Handle myPage )
 	if( language==PUMA_LANG_RUSSIAN && langBul) // 01.09.2000 E.P.
 	lang=PUMA_LANG_BULGAR;
         if(language == PUMA_LANG_RUSSIAN && langBy)
-          lang = LANG_BELARUSIAN;
+          lang = PUMA_LANG_BELARUSIAN;
 
 	if( p2_active==0 )
 	{
@@ -2041,9 +2041,9 @@ RSTR_FUNC(Bool32) RSTR_SetOptions (RSTR_Options *opt)
 		language = PUMA_LANG_RUSSIAN;
 		langBul =TRUE;
 	}
-        if( language==LANG_BELARUSIAN)
+        if( language==PUMA_LANG_BELARUSIAN)
         {
-                language = LANG_RUSSIAN;
+                language = PUMA_LANG_RUSSIAN;
                 langBy = TRUE;
         }
 

@@ -911,7 +911,7 @@ got_line:
             if(language == PUMA_LANG_RUSSIAN && !langUkr && !langSer && !langBul)
                     proc_bI(1);                       //glue all 'ë'
             }
-            if( language == LANG_RUSSIAN && langBy ) {
+            if( language == PUMA_LANG_RUSSIAN && langBy ) {
                     proc_shortu();
                     proc_Ukr();                        //UKRAINIAN "iI & .."
             }

@@ -926,7 +926,7 @@ _ok:
      switch (acc_type)
       {
       case ACC_RIGHT :		   v2->let=YY_right_accent;    break;
-      case ACC_SEMICIRCLE:        if(language == LANG_RUSSIAN && langBy){  v2->let=U_bel; } break;                             
+      case ACC_SEMICIRCLE:        if(language == PUMA_LANG_RUSSIAN && langBy){  v2->let=U_bel; } break;                             
       default: continue;
       }
      break;
@@ -934,7 +934,7 @@ _ok:
     case '\0x93':
      switch (acc_type)
       {
-      case ACC_SEMICIRCLE:        if(language == LANG_RUSSIAN && langBy){  v2->let=U_bel; } break;                             
+      case ACC_SEMICIRCLE:        if(language == PUMA_LANG_RUSSIAN && langBy){  v2->let=U_bel; } break;                             
       default: continue;
       }
      break;
@@ -943,7 +943,7 @@ _ok:
      switch (acc_type)
       {
       case ACC_RIGHT:		   v2->let=y_right_accent;    break;
-      case ACC_SEMICIRCLE:        if(language == LANG_RUSSIAN && langBy){  v2->let=u_bel; } break;                             
+      case ACC_SEMICIRCLE:        if(language == PUMA_LANG_RUSSIAN && langBy){  v2->let=u_bel; } break;                             
       default: continue;
       }
      break;
@@ -951,7 +951,7 @@ _ok:
     case '\0xE3':
      switch (acc_type)
       {
-      case ACC_SEMICIRCLE:        if(language == LANG_RUSSIAN && langBy){  v2->let=u_bel; } break;                             
+      case ACC_SEMICIRCLE:        if(language == PUMA_LANG_RUSSIAN && langBy){  v2->let=u_bel; } break;                             
       default: continue;
       }
      break;
@@ -1215,7 +1215,7 @@ int16_t type_acc(cell *c,Bool enable_mark_satellit)
 			mirror(raster,cc->h,(int16_t)((cc->w+7)/8) );
 			}
 		}
-        if (language == LANG_RUSSIAN && langBy)
+        if (language == PUMA_LANG_RUSSIAN && langBy)
                 {
                   mirror(raster, cc->h,(int16_t)((cc->w+7)/8) );
                   if(memchr("\0x93\0xE3Yy",let, 4) && acc_semicircle(cc,raster))
