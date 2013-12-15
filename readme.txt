@@ -1,6 +1,7 @@
-
 This project aims to provide belarusian language support for cuneiform OCR system. 
 Below is original readme of the cuneiform project.
+
+branch bazaar_1.1.0 contains a merge from upstream 1.1.0 version.
 ----------------------------------------------------------------------------------
 Cuneiform for Linux
 
